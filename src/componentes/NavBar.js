@@ -1,11 +1,15 @@
+import CartWidget from "./CartWidget"
+
 const NavBar = () => {
     return (
         <>
-            <h1>Navbar por Componente React</h1>
-            <div class="container">
-                <a class="btn btn-primary mx-1" href="#" role="button">Link 1</a>
-                <a class="btn btn-primary mx-1" href="#" role="button">Link 2</a>
-                <a class="btn btn-primary mx-1" href="#" role="button">Link 3</a>
+
+            <div id="navBar" className="container-fluid">
+                <h1>Tienda Loca</h1>
+                <a className="btn btn-outline-info mx-1" href="#" role="button">Productos</a>
+                <a className="btn btn-outline-info mx-1" href="#" role="button">Tus Compras</a>
+                <a className="btn btn-outline-info mx-1" href="#" role="button">Contacto</a>
+                <CartWidget />
             </div>
         </>
     )
