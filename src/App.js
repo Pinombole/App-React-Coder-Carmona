@@ -6,7 +6,7 @@ const App = () => {
     return (
         <>
             <NavBar />
-            <ItemListContainer />
+            <ItemListContainer saludo="Bienvenidos a Tienda Loca" />
         </>
     )
 }
