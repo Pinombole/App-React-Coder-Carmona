@@ -3,12 +3,13 @@ import CartWidget from "./CartWidget"
 const NavBar = () => {
     return (
         <>
-
-            <div id="navBar" className="container-fluid">
+            <div id="navBar">
                 <h1>Tienda Loca</h1>
-                <a className="btn btn-outline-info mx-1" href="#" role="button">Productos</a>
-                <a className="btn btn-outline-info mx-1" href="#" role="button">Tus Compras</a>
-                <a className="btn btn-outline-info mx-1" href="#" role="button">Contacto</a>
+                <div>
+                    <a className="btn btn-outline-info mx-1" href="#" role="button">Productos</a>
+                    <a className="btn btn-outline-info mx-1" href="#" role="button">Tus Compras</a>
+                    <a className="btn btn-outline-info mx-1" href="#" role="button">Contacto</a>
+                </div>
                 <CartWidget />
             </div>
         </>

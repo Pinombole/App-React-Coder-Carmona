@@ -5,6 +5,11 @@ a {
 #navBar{
     background-color: navy;
     height: 70px;
+    width: 100%;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     h1 {
         color: #0dcaf0;
         display: inline;
@@ -13,3 +18,59 @@ a {
         color: #0dcaf0;
     };
 };
+
+#itemListContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    h3 {
+        width: 100%;
+        text-align: center;
+        align-self: center;
+    }
+}
+
+.producto{
+    width: 15rem;
+    height: 10rem;
+    display: flex;
+    border: 1px solid navy;
+    border-radius: .25rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: center;
+    box-sizing: border-box;
+    .botoneraCounter{ 
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+        p {
+            width: 50%;
+            font-size: 1.4em;
+            display: block;
+            align-self: center;
+            margin: 0;
+            line-height: 1;
+            text-align: center;
+        }
+        .btn-sm{
+            font-size: 2em;
+            padding: 0;
+            padding-bottom: .2em;
+        }
+        i {
+            line-height: 1;
+        }
+        button {
+            width: 20%;
+            margin: 0 .5em;
+        }           
+    }
+    .btn-agregar {
+        width: 100%;
+        margin: 0;
+    }    
+   
+  
+}
