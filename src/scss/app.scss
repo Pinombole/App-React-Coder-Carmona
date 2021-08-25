@@ -3,7 +3,7 @@ a {
 };
 
 #navBar{
-    background-color: navy;
+    background-color: #333e99;
     height: 70px;
     width: 100%;
     padding: 2em;
@@ -22,8 +22,10 @@ a {
 #itemListContainer {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    h3 {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2em;
+    h3, h4 {
         width: 100%;
         text-align: center;
         align-self: center;
@@ -31,16 +33,16 @@ a {
 }
 
 .producto{
-    width: 15rem;
-    height: 10rem;
+    width: 24%;
     display: flex;
-    border: 1px solid navy;
+    border: 1px solid #333E99;
     border-radius: .25rem;
     flex-direction: column;
     justify-content: space-between;
     align-self: center;
     box-sizing: border-box;
     .botoneraCounter{ 
+        border: 1px solid #333E99;
         margin-top: 1rem;
         display: flex;
         justify-content: space-between;
@@ -55,6 +57,8 @@ a {
             text-align: center;
         }
         .btn-sm{
+            background-color: #333e99;
+            border-color: #333e99;
             font-size: 2em;
             padding: 0;
             padding-bottom: .2em;
@@ -64,13 +68,20 @@ a {
         }
         button {
             width: 20%;
-            margin: 0 .5em;
+            margin: .2em .5em;
         }           
     }
     .btn-agregar {
         width: 100%;
         margin: 0;
-    }    
-   
-  
+        background-color: #333e99;
+            border-color: #333e99;
+    }
+    .precio {
+        display: block;
+        width: 100%;
+        margin: 0;
+        font-size: 2em;
+        text-align: center;
+    } 
 }

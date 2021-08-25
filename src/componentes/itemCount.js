@@ -20,7 +20,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         if (stock > 0) {
             onAdd(contador);
         }
-
     }
 
     useEffect(() => {
@@ -28,8 +27,8 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }, [contador])
 
     return (
-        <div className="producto border-primary">
-            <div className="botoneraCounter">
+        <>
+            <div className="botoneraCounter border-primary">
                 <button className="btn btn-primary btn-sm" onClick={restaContador}><i>-</i></button>
                 <p>{contador}</p>
                 <button className="btn btn-primary btn-sm" onClick={sumaContador}><i>+</i></button>
@@ -37,7 +36,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             <div>
                 <button className="btn-agregar btn btn-primary" onClick={agregaCarrito}>Agregar al Carrito</button>
             </div>
-        </div>
+        </>
 
     );
 }
