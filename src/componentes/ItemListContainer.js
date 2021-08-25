@@ -19,8 +19,7 @@ const ItemListContainer = () => {
         promesa.then((data) => {
             setDataShow(data);
         })
-        console.log("Aca viene el listado:")
-        console.log(dataToShow)
+
     }, [])
 
 
