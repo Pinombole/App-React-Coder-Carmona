@@ -1,9 +1,10 @@
 import Item from "./Item";
 
 const ItemList = (dataProp) => {
+    console.log(dataProp.listado)
     return (
         dataProp.listado.map((item) => (
-            <Item id={item.id} nombre={item.nombre} precio={item.precio} pictureURL={item.pictureURL} />
+            <Item data={item} />
         ))
     )
 };

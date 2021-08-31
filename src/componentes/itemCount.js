@@ -22,10 +22,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         }
     }
 
-    useEffect(() => {
-        console.log("Hay Stock")
-    }, [contador])
-
     return (
         <>
             <div className="botoneraCounter border-primary">

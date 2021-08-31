@@ -11,15 +11,17 @@ const Item = (itemProp) => {
     }
 
     return (
-        <div className="producto border-primary item" id={itemProp.id}>
-            <h4>{itemProp.nombre}</h4>
-            <div>
-                <img src={itemProp.pictureURL} alt={itemProp.nombre} />
+        <div className="col-12 col-sm-6 col-md-4 col-lg-3 no-gutters">
+            <div className="producto border-primary" id={itemProp.data.id}>
+                <h4>{itemProp.data.title}</h4>
+                <div className="containerImg">
+                    <img src={itemProp.data.image} alt={itemProp.data.title} />
+                </div>
+                <div>
+                    <p className="precio">${itemProp.data.price}</p>
+                </div>
+                <ItemCount stock={10} initial={1} onAdd={mensajeAdd} />
             </div>
-            <div>
-                <p className="precio">${itemProp.precio}</p>
-            </div>
-            <ItemCount stock={10} initial={1} onAdd={mensajeAdd} />
         </div>
 
     );
