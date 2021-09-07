@@ -34,6 +34,7 @@ a {
 
 .producto{
     width:98%;
+    min-height: 460px;
     margin: 1em 0; 
     display: flex;
     border: 1px solid #333E99;
@@ -42,6 +43,29 @@ a {
     justify-content: space-between;
     align-self: center;
     box-sizing: border-box;
+    &.detalle{
+        min-height: 600px;
+        h3 {
+            color: #333E99;
+            font-size: 2rem;
+            text-align: center;
+            margin: 0;
+        }
+        .precio{
+            font-size:3em;            
+        }
+        .descripcion {
+            font-size: 1.2rem;
+            padding: 0 .5em;
+            &.titulo {
+                margin-bottom:.4rem;
+                font-size: 1.5rem;
+            }
+        }
+    }
+    a, p{
+        color: #333E99;
+    }
     .botoneraCounter{ 
         border: 1px solid #333E99;
         margin-top: 1rem;
@@ -73,6 +97,8 @@ a {
         }           
     }
     h4 {
+        color: #333E99;
+        font-size: 1.3rem;
         text-align: center;
         min-height: 100px;
         margin: 0;
@@ -81,7 +107,7 @@ a {
         width: 100%;
         margin: 0;
         background-color: #333e99;
-            border-color: #333e99;
+        border-color: #333e99;
     }
     .precio {
         display: block;
@@ -91,12 +117,20 @@ a {
         text-align: center;
     }
     .containerImg {
-        max-width:80%;
         align-self: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 50%;
+        margin: 1em 0;
         img {
-            height:200px;
-            align-self: center;
+            position: absolute;
+            top:0; 
+            left: auto;      
+            height:100%;
+            align-self:center;
         } 
-    } 
-    
+    }    
 }

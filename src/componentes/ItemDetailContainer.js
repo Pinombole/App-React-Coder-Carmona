@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react"
-import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
+import ItemDetail from "./ItemDetail"
 
-const id = "17";
-const fakeStore = `https://fakestoreapi.com/products/category/women's%20clothing`;
+const fakeStore = `https://fakestoreapi.com/products`;
 
 const ItemDetailContainer = () => {
 
+    const { id } = useParams();
     let [detailToShow, setDetailShow] = useState([]);
 
     useEffect(() => {
@@ -14,7 +15,6 @@ const ItemDetailContainer = () => {
             .then((json) => {
                 const aux = json.find(json => json.id == id)
                 setDetailShow(aux)
-                console.log(aux)
             })
     }, [])
 
