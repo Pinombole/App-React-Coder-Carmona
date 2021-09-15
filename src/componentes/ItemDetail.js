@@ -1,11 +1,16 @@
-import { propTypes } from "react-bootstrap/esm/Image";
-import ItemCount from "./itemCount";
+// import { propTypes } from "react-bootstrap/esm/Image";
+import { useContext } from "react"
+import ItemCount from "./itemCount"
+import { CartContext } from "./CartContext"
 
 const ItemDetail = (producto) => {
+    const { addItem } = useContext(CartContext)
+
     const datosProducto = producto.detail;
+
     const onAdd = (cantidad) => {
         const productoAgregado = { ...datosProducto, cantidad };
-        console.log("Producto Agregado:", productoAgregado);
+        addItem(productoAgregado);
     }
 
     return (

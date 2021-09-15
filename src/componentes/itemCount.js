@@ -1,11 +1,7 @@
 import { useState } from "react"
 import { Link } from 'react-router-dom'
 
-
-
 const ItemCount = ({ stock, initial, onAdd }) => {
-
-
 
     let [contador, setContador] = useState(initial);
     const [button, setButton] = useState('button');
@@ -19,7 +15,7 @@ const ItemCount = ({ stock, initial, onAdd }) => {
     }
 
     const ButtonCart = () => {
-        return <button className="btn-agregar btn btn-primary"><Link to="/carrito">Terminar Compra</Link ></button>
+        return <Link to="/carrito"><button className="btn-agregar btn btn-primary mt-2">Terminar Compra</button></Link >
     }
 
     const sumaContador = () => {
@@ -52,11 +48,13 @@ const ItemCount = ({ stock, initial, onAdd }) => {
                     button === 'button' ?
                         <ButtonCount />
                         :
-                        <ButtonCart />
+                        <>
+                            <ButtonCount />
+                            <ButtonCart />
+                        </>
                 }
             </div>
         </>
-
     );
 }
 

@@ -2,28 +2,23 @@ import ItemCount from "./itemCount"
 import { Link } from "react-router-dom"
 
 const Item = (itemProp) => {
-    const mensajeAdd = (cantidad) => {
-        if (cantidad === 1) {
-            console.log(`Se agregó ${cantidad} producto al Carrito`)
-        }
-        else {
-            console.log(`Se agregaron ${cantidad} productos al Carrito`)
-        }
-    }
+    const itemData = itemProp.data
 
     return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3 no-gutters">
-            <div className="producto border-primary" id={itemProp.data.id}>
-                <Link to={`/item/${itemProp.data.id}`}>
-                    <h4>{itemProp.data.title}</h4>
+            <div className="producto border-primary" id={itemData.id}>
+                <Link to={`/item/${itemData.id}`}>
+                    <h4>{itemData.title}</h4>
                     <div className="containerImg">
-                        <img src={itemProp.data.image} alt={itemProp.data.title} />
+                        <img src={itemData.image} alt={itemData.title} />
                     </div>
                     <div>
-                        <p className="precio">${itemProp.data.price}</p>
+                        <p className="precio">${itemData.price}</p>
                     </div>
                 </Link>
-                <ItemCount stock={10} initial={1} onAdd={mensajeAdd} />
+                <Link to={`/item/${itemData.id}`}>
+                    <button className="btn-agregar btn btn-primary">Ver Detalle</button>
+                </Link>
             </div>
         </div>
 

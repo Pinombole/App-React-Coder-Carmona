@@ -28,8 +28,6 @@ const ItemListContainer = () => {
                     categoriaTienda = aux;
 
                 }
-                console.log("categoriaTienda")
-                console.log(categoriaTienda)
                 setDataShow(categoriaTienda)
             });
     }, [categoria])
