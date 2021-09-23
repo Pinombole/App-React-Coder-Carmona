@@ -7,9 +7,11 @@ const { Provider } = CartContext
 const CustomProvider = ({ children }) => {
     const [carrito, setCarrito] = useState([]);
 
+    // console.log(carrito)
+
     const addItem = (productoAgregado) => {
         if (isInCart(productoAgregado.id)) {
-            let aux = carrito
+            let aux = [...carrito]
             aux.forEach(producto => {
                 if (producto.id === productoAgregado.id) {
                     producto.cantidad += productoAgregado.cantidad;
@@ -37,7 +39,9 @@ const CustomProvider = ({ children }) => {
 
     const contexto = {
         carrito,
-        addItem
+        addItem,
+        removeItem,
+        clearCart
     }
 
     return (

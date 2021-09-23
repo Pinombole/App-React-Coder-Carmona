@@ -7,14 +7,13 @@ const CartWidget = () => {
 
     const calculaCantidad = () => {
         let aux = [];
-        carrito.map(prod => { aux.push(prod.cantidad) })
+        carrito.map(prod => aux.push(prod.cantidad))
         let suma = 0;
         aux.forEach(cantidades => suma += cantidades)
         return suma
     }
 
     const cantidad = calculaCantidad();
-
 
     return (
         <Link to="/carrito" className="position-relative">
