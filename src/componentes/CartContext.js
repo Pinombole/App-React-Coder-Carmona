@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState } from "react"
 
 export const CartContext = createContext()
 
@@ -7,15 +7,18 @@ const { Provider } = CartContext
 const CustomProvider = ({ children }) => {
     const [carrito, setCarrito] = useState([]);
 
-    const addItem = (producto) => {
-        if (isInCart(producto.id)) {
-            const aux = isInCart(producto.id)
-            aux.cantidad = aux.cantidad + producto.cantidad
-            setCarrito([aux])
-            console.log("Cantidad Actualizada:", carrito)
+    const addItem = (productoAgregado) => {
+        if (isInCart(productoAgregado.id)) {
+            let aux = carrito
+            aux.forEach(producto => {
+                if (producto.id === productoAgregado.id) {
+                    producto.cantidad += productoAgregado.cantidad;
+                    setCarrito(aux);
+                }
+            })
         }
         else {
-            setCarrito([...carrito, producto])
+            setCarrito([...carrito, productoAgregado])
         }
     }
 
@@ -24,7 +27,7 @@ const CustomProvider = ({ children }) => {
         setCarrito(carritoActualizado)
     }
 
-    const clear = () => {
+    const clearCart = () => {
         setCarrito([])
     }
 
@@ -36,10 +39,6 @@ const CustomProvider = ({ children }) => {
         carrito,
         addItem
     }
-
-    useEffect(() => {
-        console.log(contexto.carrito)
-    }, [])
 
     return (
         <Provider value={contexto}>

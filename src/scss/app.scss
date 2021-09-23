@@ -18,7 +18,14 @@ a {
     }
     .cart-icon {
         color: #0dcaf0;
+        font-size: 2rem;
     };
+    .badge {
+        position:absolute;
+        top: 0;
+        left: 100%;
+        transform: translate(-50%,-50%) 
+    }
 };
 
 main {
@@ -151,4 +158,58 @@ main {
             align-self:center;
         } 
     }    
+}
+
+.itemCarrito {
+    margin: 1em;
+    border: 1px solid #333E99;
+    border-radius: .25rem;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: stretch;
+    .containerImg {
+        width: 100%;
+        align-self: center;
+        display: flex;
+        justify-content: center;     
+        position: relative;
+        overflow: hidden;
+        padding-top: 15%;
+        margin: .5em 0;
+        img {
+            position: absolute;
+            top:0; 
+            left: auto;      
+            height:100%;
+            align-self:center;
+        }        
+    }
+    .col-2, .col-6 {
+        font-size: 2rem;
+        border: 1px solid #333E99;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        .titulosCarrito{
+            color: white;
+            background-color: #333e99;
+            font-size: 1rem;
+            padding-bottom:.3rem
+        }
+        p{
+            height: 100%;
+            margin: 0;
+            padding-top: 15%;
+        }         
+    }
+    .iconoBorrar {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+        a{
+            font-size: 3rem;
+        }
+    }
+    
 }

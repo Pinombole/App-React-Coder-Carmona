@@ -1,44 +1,55 @@
 import { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom';
-import ItemList from "./ItemList"
-
-const fakeStore = `https://fakestoreapi.com/products`;
+import ItemList from './ItemList'
+import { firestore } from '../firebase.js'
 
 const ItemListContainer = () => {
 
-    let [dataToShow, setDataShow] = useState([]);
+    let [productos, setProductos] = useState([]);
     let { categoria } = useParams()
 
     useEffect(() => {
-        fetch(fakeStore)
-            .then(res => res.json())
-            .then((json) => {
-                let ropaHombre = json.filter(p => p.category === "men's clothing");
-                let ropaMujer = json.filter(p => p.category === "women's clothing");
-                let joyas = json.filter(p => p.category === "jewelery");
-                let aux = [...ropaHombre, ...ropaMujer, ...joyas];
-                aux.sort((a, b) => parseFloat(a.id) - parseFloat(b.id));
+        const db = firestore;
 
-                let categoriaTienda = aux;
+        const collection = db.collection("productos")
+
+        const query = collection.get()
+
+        query
+            .then((snapshot) => {
+                const docs = snapshot.docs
+
+                const productosDb = []
+
+                docs.forEach(doc => {
+                    const docSnapshot = doc
+
+                    const productoCompleto = { ...docSnapshot.data(), id: docSnapshot.id }
+
+                    productosDb.push(productoCompleto)
+                })
 
                 if (categoria) {
-                    categoriaTienda = aux.filter((item) => item.category === categoria)
+                    const aux = productosDb.filter((item) => item.categoryId === categoria)
+                    setProductos(aux)
                 }
                 else {
-                    categoriaTienda = aux;
-
+                    setProductos(productosDb)
                 }
-                setDataShow(categoriaTienda)
-            });
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+
     }, [categoria])
 
     return (
-        dataToShow.length === 0 ? (
+        productos.length === 0 ? (
             <h4>Cargando Producto...</h4>
         ) : (
             <div className="container">
                 <div className="row no-gutters">
-                    <ItemList listado={dataToShow} />
+                    <ItemList listado={productos} />
                 </div>
             </div>
         )

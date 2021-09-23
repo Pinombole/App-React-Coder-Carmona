@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail"
-
-const fakeStore = `https://fakestoreapi.com/products`;
+import { firestore } from '../firebase.js'
 
 const ItemDetailContainer = () => {
 
@@ -10,11 +9,17 @@ const ItemDetailContainer = () => {
     let [detailToShow, setDetailShow] = useState([]);
 
     useEffect(() => {
-        fetch(fakeStore)
-            .then(res => res.json())
-            .then((json) => {
-                const aux = json.find(json => json.id == id)
-                setDetailShow(aux)
+        const db = firestore;
+
+        const collection = db.collection("productos")
+
+        const query = collection.doc(id).get()
+
+        query
+            .then((snapshot) => {
+                const produDetalle = { ...snapshot.data(), id: snapshot.id }
+
+                setDetailShow(produDetalle)
             })
     }, [])
 

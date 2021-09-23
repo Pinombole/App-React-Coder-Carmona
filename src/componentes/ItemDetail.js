@@ -15,10 +15,10 @@ const ItemDetail = (producto) => {
 
     return (
         <div className="offset-2 col-8 no-gutters">
-            <div className="producto detalle border-primary" id={datosProducto.id}>
+            <div className="producto detalle border-primary">
                 <h3>{datosProducto.title}</h3>
                 <div className="containerImg">
-                    <img src={datosProducto.image} alt={producto.title} />
+                    <img src={datosProducto.image} alt={datosProducto.title} />
                 </div>
                 <div>
                     <p className="precio">${datosProducto.price}</p>
