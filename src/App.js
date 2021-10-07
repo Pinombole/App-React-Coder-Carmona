@@ -2,9 +2,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ItemDetailContainer from './componentes/ItemDetailContainer';
 import ItemListContainer from './componentes/ItemListContainer';
+import CustomProvider from './componentes/CartContext';
 import NavBar from './componentes/NavBar';
 import Cart from './componentes/Cart';
-import CustomProvider from './componentes/CartContext';
+import Footer from './componentes/Footer'
+
 
 const App = () => {
     return (
@@ -20,6 +22,7 @@ const App = () => {
                             <Route path="/carrito" component={Cart} />
                         </Switch>
                     </main>
+                    <Footer />
                 </CustomProvider>
             </BrowserRouter>
         </>

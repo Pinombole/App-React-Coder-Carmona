@@ -1,8 +1,16 @@
-import ItemCount from "./itemCount"
 import { Link } from "react-router-dom"
+import { useContext } from "react"
+import ItemCount from "./itemCount"
+import { CartContext } from "./CartContext"
 
 const Item = (itemProp) => {
+    const { addItem } = useContext(CartContext)
     const itemData = itemProp.data
+
+    const onAdd = (cantidad) => {
+        const productoAgregado = { ...itemData, cantidad };
+        addItem(productoAgregado);
+    }
 
     return (
         <div className="col-12 col-sm-6 col-md-4 col-lg-3 no-gutters">
@@ -19,6 +27,9 @@ const Item = (itemProp) => {
                 <Link to={`/item/${itemData.id}`}>
                     <button className="btn-agregar btn btn-primary">Ver Detalle</button>
                 </Link>
+                <div>
+                    <ItemCount stock={itemData.stock} initial={1} onAdd={onAdd} />
+                </div>
             </div>
         </div>
 

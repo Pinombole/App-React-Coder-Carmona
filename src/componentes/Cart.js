@@ -1,15 +1,25 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { CartContext } from "./CartContext"
+import BuyerForm from "./BuyerForm"
+import Footer from './Footer'
+
 
 const Cart = () => {
     const { carrito } = useContext(CartContext)
-    const { removeItem, clearCart } = useContext(CartContext)
+    const { removeItem, clearCart, getTotal } = useContext(CartContext)
+    let [form, setForm] = useState(false)
+
+    const total = getTotal(carrito)
+
+    const showForm = () => {
+        setForm(true)
+    }
 
     return (
-        <>
+        <div id="carrito" className="container">
             {carrito.length > 0 ? (
-                <div className="container">
+                <>
                     {carrito.map(producto => {
                         const productoId = producto.id;
                         return <div className="row g-0 itemCarrito" key="{producto.id}">
@@ -30,17 +40,28 @@ const Cart = () => {
                             </div>
                         </div>
                     })}
-                    <h4 className="total">Total</h4>
-                    <button className="btn btn-primary btn-sm" onClick={clearCart}>Vaciar Carrito de Compra
-                    </button>
-                </div>
+                    <div className="row g-0 seccionTotal">
+                        <div className="col-2 offset-6"><h4>Total:</h4></div>
+                        <div className="col-2"><h4>${total}</h4></div>
+                        <div className="col-2"><button className="btn btn-danger" onClick={clearCart}>Vaciar Carrito</button></div>
+                    </div>
+                    <div className="botones-dobles">
+                        <Link to="/"><button className="btn btn-danger">Ver mas Productos</button></Link >
+                        <button className="btn btn-danger" onClick={showForm}>Terminar Compra</button>
+
+                    </div>
+                    {form === true ? (
+                        <BuyerForm />
+                    ) : (null)}
+                </>
+
             ) : (
-                <div className="container">
+                <div className="d-flex flex-column align-items-center mt-2 botones-dobles">
                     <h2 className="px-3">El Carrito está Vacio</h2>
                     <Link to="/"><button className="btn-agregar btn btn-primary">¡Empeza a Comprar!</button></Link>
                 </div>
             )}
-        </>
+        </div>
     );
 }
 

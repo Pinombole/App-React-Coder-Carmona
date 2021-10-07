@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { CartContext } from "./CartContext"
 import { useContext } from "react"
+import CartFloat from './CartFloat'
 
 const CartWidget = () => {
     const { carrito } = useContext(CartContext)
@@ -16,10 +17,13 @@ const CartWidget = () => {
     const cantidad = calculaCantidad();
 
     return (
-        <Link to="/carrito" className="position-relative">
-            <span className={cantidad === 0 ? 'hidden' : 'badge rounded-circle bg-danger'}>{cantidad}</span>
-            <i className="material-icons cart-icon">shopping_cart</i>
-        </Link>
+        <div className="cartHover">
+            <Link to="/carrito" className="position-relative">
+                <span className={cantidad === 0 ? 'hidden' : 'badge rounded-circle bg-danger'}>{cantidad}</span>
+                <i className="material-icons cart-icon">shopping_cart</i>
+            </Link>
+            <CartFloat />
+        </div>
     );
 
 }

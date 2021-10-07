@@ -1,57 +1,62 @@
 import { useState, useEffect } from "react"
-import { useParams } from 'react-router-dom';
-import ItemList from './ItemList'
+import { useParams } from 'react-router-dom'
 import { firestore } from '../firebase.js'
+import Spinner from 'react-bootstrap/Spinner'
+import ItemList from './ItemList'
+
 
 const ItemListContainer = () => {
 
-    let [productos, setProductos] = useState([]);
+    let [productos, setProductos] = useState([])
+    let [loading, setLoading] = useState(true)
     let { categoria } = useParams()
 
     useEffect(() => {
-        const db = firestore;
 
-        const collection = db.collection("productos")
+        if (categoria) {
 
-        const query = collection.get()
+            const collection = firestore.collection("productos")
+                .where("category", "==", categoria)
+                .get()
 
-        query
-            .then((snapshot) => {
-                const docs = snapshot.docs
-
-                const productosDb = []
-
-                docs.forEach(doc => {
-                    const docSnapshot = doc
-
-                    const productoCompleto = { ...docSnapshot.data(), id: docSnapshot.id }
-
-                    productosDb.push(productoCompleto)
+            collection
+                .then((snapshot) => {
+                    setProductos(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+                    setLoading(false)
                 })
+                .catch((error) => {
+                    console.error(error)
+                })
+        }
+        else {
+            const collection = firestore.collection("productos").get()
 
-                if (categoria) {
-                    const aux = productosDb.filter((item) => item.categoryId === categoria)
-                    setProductos(aux)
-                }
-                else {
-                    setProductos(productosDb)
-                }
-            })
-            .catch((error) => {
-                console.error(error)
-            })
-
+            collection
+                .then((snapshot) => {
+                    setProductos(snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id })))
+                    setLoading(false)
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+        }
     }, [categoria])
 
     return (
-        productos.length === 0 ? (
-            <h4>Cargando Producto...</h4>
-        ) : (
-            <div className="container">
-                <div className="row no-gutters">
-                    <ItemList listado={productos} />
-                </div>
+        loading === true ? (
+            <div className="spinner">
+                <Spinner animation="border" variant="danger" className="mx-2" />
+                <h4 className="mx-2">Cargando Productos...</h4>
             </div>
+
+        ) : (
+            <>
+                <div className="container">
+                    <div className="row no-gutters">
+                        <ItemList listado={productos} />
+                    </div>
+                </div>
+            </>
         )
     );
 }
